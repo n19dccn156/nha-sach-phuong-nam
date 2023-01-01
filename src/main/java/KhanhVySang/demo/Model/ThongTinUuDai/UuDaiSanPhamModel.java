@@ -9,12 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblUuDaiSanPham")
 public class UuDaiSanPhamModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maUuDai;
     @Column(name = "tenUuDai", unique = true, nullable = false, length = 50)
     private String tenUuDai;
@@ -29,6 +30,7 @@ public class UuDaiSanPhamModel {
     @Column(name = "maNhanVien", nullable = false)
     private int maNhanVien;
 
+    public UuDaiSanPhamModel(){}
 
     public UuDaiSanPhamModel(String tenUuDai, float phanTramUuDai, 
                             String moTa, Date ngayBatDau, 

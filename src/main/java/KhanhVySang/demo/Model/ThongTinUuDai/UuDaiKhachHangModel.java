@@ -9,12 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblUuDaiKhachHang")
 public class UuDaiKhachHangModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maUuDai;
     @Column(name = "tenUuDai", nullable = false, length = 50)
     private String tenUuDai;
@@ -32,7 +33,7 @@ public class UuDaiKhachHangModel {
     private Date ngayBatDau;
     @Column(name = "ngayKetThuc", nullable = false)
     private Date ngayKetThuc;
-    @Column(name = "maNhanvien", nullable = false)
+    @Column(name = "maNhanVien", nullable = false)
     private int maNhanVien;
 
 
@@ -131,4 +132,5 @@ public class UuDaiKhachHangModel {
     public void setMaNhanVien(int maNhanVien) {
         this.maNhanVien = maNhanVien;
     }
+
 }

@@ -14,16 +14,42 @@ public class DanhMucService {
     @Autowired
     private DanhMucRepository danhMucRepository;
 
-    public List<DanhMucModel> getTatCaDanhMuc(){
 
-        List<DanhMucModel> listDM = danhMucRepository.findAll();
-
-        return listDM;   
+    public List<DanhMucModel> findAll(){
+        return danhMucRepository.findAll();   
     }
 
-    public Optional<DanhMucModel> findMotDanhMuc(int maDanhMuc) {
-        Optional<DanhMucModel> dm = danhMucRepository.findByMaDanhMuc(maDanhMuc);
+    public DanhMucModel findByMaDanhMuc(int maDanhMuc) {
+        Optional<DanhMucModel> oDM = danhMucRepository.findByMaDanhMuc(maDanhMuc);
+        if(oDM.isEmpty()) return new DanhMucModel();
+        return oDM.get();
+    }
 
-        return dm;
+    public DanhMucModel findByTenDanhMuc(String tenDanhMuc) {
+        Optional<DanhMucModel> oDM = danhMucRepository.findByTenDanhMuc(tenDanhMuc);
+        if(oDM.isEmpty()) return new DanhMucModel();
+        return oDM.get();
+    }
+
+    public List<DanhMucModel> findByTrangThai(boolean trangThai) {
+        return danhMucRepository.findByTrangThai(trangThai);
+    }
+
+    public boolean updateDanhMuc(DanhMucModel danhMuc){
+        try {
+            return danhMucRepository.updateDanhMuc(danhMuc.getMaDanhMuc(), 
+                                                   danhMuc.getTrangThai(), 
+                                                   danhMuc.getTenDanhMuc());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean insertDanhMuc(DanhMucModel danhMuc){
+        try {
+            return danhMucRepository.insertDanhMuc(danhMuc.getTenDanhMuc(), danhMuc.getTrangThai());
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
